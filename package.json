@@ -1,0 +1,25 @@
+{
+  "name": "vite-plugin-local-scoped-modules",
+  "version": "0.110.1",
+  "author": "Zengnificant<1269580641@qq.com>",
+  "license": "MIT",
+  "main": "index.js",
+  "files": [
+    "lib"
+  ],
+  "keywords": [
+    "vite-plugin",
+    "babel-plugin",
+    "relative-path",
+    "no-relative-path"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:zengnificant/vite-plugin-local-scoped-modules.git"
+  },
+  "dependencies": {
+    "@babel/core": "^7.18.6",
+    "babel-plugin-local-scoped-modules": "^0.110.1",
+    "vite": "^3.0.0"
+  }
+}
