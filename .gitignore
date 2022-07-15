@@ -6,4 +6,10 @@ node_modules
 yarn-error.log
 yarn.lock
 
+gulpfile.js
+
+index.es.js
+
+.babelrc
+
 *.sh
