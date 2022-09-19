@@ -57,8 +57,8 @@ export default (opts = {}) => {
                     sourceMaps: false
                 })
 
+                let ret = code.replace(/[\s\S]+require\(["'](.*)['"]\);/, '$1').replace(/\\/g, '/')
 
-                let ret = code.replace(/[\s\S]?require\(["'](.*)['"]\);?/, '$1').replace(/\\/g, '/')
 
                 if (config.command === 'serve') {
 

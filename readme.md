@@ -1,6 +1,6 @@
 vite-plugin-local-scoped-modules
 ================
-This is a [vite](https://github.com/vitejs/vite) plugin that intends to avoid  typing  relative paths like `../../../../..` .  
+This is a [vite](https://github.com/vitejs/vite) plugin that intends to avoid  typing  relative paths.Use relative paths like local modules instead.
 
 Install
 ---------------------------------
@@ -47,7 +47,7 @@ Relatives:
 ---------------------------------
 + babel plugin:
      - [babel-plugin-local-scoped-modules](https://github.com/zengnificant/babel-plugin-local-scoped-modules#readme)
-+ sublime plugin:
++ sublime plugin[auto-completion]:
      - [LocalScopedModules](https://github.com/zengnificant/LocalScopedModules)
 
 
@@ -55,3 +55,5 @@ Relatives:
  Lisense
 ---------------------------------
   MIT
+ 
+  
