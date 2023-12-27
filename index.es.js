@@ -1,6 +1,8 @@
 import { transformSync } from '@babel/core'
-import plugin from 'babel-plugin-local-scoped-modules';
 import { normalizePath } from 'vite'
+import os from 'os'
+const  plugin= require('babel-plugin-local-scoped-modules');
+
 
 const defaultObts = {
     rootPrefix: '~',
@@ -60,8 +62,7 @@ export default (opts = {}) => {
                 let ret = code.replace(/[\s\S]+require\(["'](.*)['"]\);/, '$1').replace(/\\/g, '/')
 
 
-                if (config.command === 'serve') {
-
+                if (os?.platform()?.includes('linux')) {
                     return ret
                 }
                 //for client
