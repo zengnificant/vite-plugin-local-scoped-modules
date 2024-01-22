@@ -1,8 +1,5 @@
 import { transformSync } from '@babel/core'
 import { normalizePath } from 'vite'
-import os from 'os'
-const  plugin= require('babel-plugin-local-scoped-modules');
-
 
 const defaultObts = {
     rootPrefix: '~',
@@ -14,72 +11,36 @@ const defaultObts = {
 export default (opts = {}) => {
     const getConfig = () => Object.assign(defaultObts, opts)
 
-    let config
-
     return {
         name: 'vite:LocalScopeModules',
 
-        configResolved(resolvedConfig) {
-            // 存储最终解析的配置
-            config = resolvedConfig
-        },
+      
 
         resolveId(id, importer) {
 
-
+               const config=getConfig()
             if (importer && importer.endsWith('.html')) {
-
-                id = normalizePath(id)
-                if (id.startsWith('../')) {
-                    id = id.replace(/\.\.\//g, '');
-                    if (!id.startsWith('./')) {
-                        id = './' + id
-                    }
-                } else if (id.startsWith('./')) {
-                    id = id.replace(/\.\.\//g, '');
-                } else {
-                    return null
-                }
-
-
-                return id;
+             
+                return getNormalizePath(id)
             }
 
-
-            if (isValidResolveId(id, getConfig())) {
-
+             
+            if (isValidResolveId(id, config)) {
 
                 const temp_code = `require("${id}");`
                 const { code } = transformSync(temp_code, {
                     filename: importer,
                     ast: false,
                     plugins: [
-                        [plugin, getConfig()]
+                        ['babel-plugin-local-scoped-modules',config]
                     ],
                     sourceMaps: false
                 })
-
-                let ret = code.replace(/[\s\S]+require\(["'](.*)['"]\);/, '$1').replace(/\\/g, '/')
-
-
-                if (os?.platform()?.includes('linux')) {
-                    return ret
-                }
-                //for client
-                if (ret.startsWith('../')) {
-                    ret = ret.replace(/\.\.\//g, '');
-                    if (!ret.startsWith('./')) {
-                        ret = './' + ret
-                    }
-                } else if (ret.startsWith('./')) {
-                    ret = ret.replace(/\.\.\//g, '');
-                } else {
-                    return null
-                }
-
-                return ret;
-
-
+            
+                let ret = code.replace(/[\s\S]*?require\(["'](.*)['"]\);/, '$1')
+        
+                return getNormalizePath(ret)
+           
             }
 
             return null
@@ -88,6 +49,26 @@ export default (opts = {}) => {
     }
 
 }
+
+
+
+
+const  getNormalizePath=(ret)=>{
+
+     ret=normalizePath(ret)
+     if (ret.startsWith('../')) {
+        ret = ret.replace(/\.\.\//g, '');
+        if (!ret.startsWith('./')) {
+            ret = './' + ret
+        }
+    } else if (ret.startsWith('./')) {
+        ret = ret.replace(/\.\.\//g, '');
+    } else {
+        return null
+    }
+  return  ret
+}
+
 
 
 const escapeStringRegexp = (() => {

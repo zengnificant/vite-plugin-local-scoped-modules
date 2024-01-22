@@ -1,6 +1,6 @@
 {
   "name": "vite-plugin-local-scoped-modules",
-  "version": "0.120.1-alpha",
+  "version": "0.160.0",
   "author": "Zengnificant<1269580641@qq.com>",
   "license": "MIT",
   "main": "dist/index.cjs",
@@ -28,14 +28,9 @@
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",
-    "@babel/plugin-transform-runtime": "^7.4.4",
-    "@babel/preset-env": "^7.4.5",
     "vite": "^5.0.0"
   },
   "dependencies": {
-    "@babel/runtime": "^7.4.5",
-    "babel-plugin-local-scoped-modules": "^0.110.1",
-    "vite-plugin-require": "^1.1.11"
-  },
-  "packageManager": "yarn@4.0.2"
+    "babel-plugin-local-scoped-modules": "^0.120.3"
+  }
 }
