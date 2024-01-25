@@ -1,9 +1,10 @@
 {
   "name": "vite-plugin-local-scoped-modules",
-  "version": "0.160.0",
+  "version": "0.160.1",
   "author": "Zengnificant<1269580641@qq.com>",
   "license": "MIT",
-  "main": "dist/index.cjs",
+  "main": "./dist/index.cjs",
+   "module": "./dist/index.mjs",
   "files": [
     "lib"
   ],
@@ -24,13 +25,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git@github.com:zengnificant/vite-plugin-local-scoped-modules.git"
+    "url": "git+ssh://git@github.com/zengnificant/vite-plugin-local-scoped-modules.git"
   },
-  "devDependencies": {
-    "@babel/core": "^7.4.5",
-    "vite": "^5.0.0"
-  },
+  
   "dependencies": {
+    "@babel/core": "^7.4.5",
+    "vite": "^5.0.0",
     "babel-plugin-local-scoped-modules": "^0.120.3"
   }
 }

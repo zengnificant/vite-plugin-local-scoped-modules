@@ -13,9 +13,9 @@ export default (opts = {}) => {
 
     return {
         name: 'vite:LocalScopeModules',
-
-      
-
+        config(){
+              return  getConfig()
+        },
         resolveId(id, importer) {
 
                const config=getConfig()

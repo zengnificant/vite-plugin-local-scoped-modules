@@ -9,9 +9,7 @@ export default defineConfig({
     
 
     build: {
-        assetsInlineLimit: 12 * 1024,
-
-
+       
         minify: true,
 
         lib: {
