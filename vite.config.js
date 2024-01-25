@@ -2,7 +2,7 @@
 import { defineConfig } from 'vite'
 
 const packageJSON =require('./package.json');
-const external =Object.keys(packageJSON['devDependencies'])
+//const external =Object.keys(packageJSON['dependencies'])
 
 
 export default defineConfig({
@@ -25,12 +25,12 @@ export default defineConfig({
            
             return `index.cjs`
           }
-        },
-        rollupOptions: {
-            // 确保外部化处理那些你不想打包进库的依赖
-           external,
+         }
+        // rollupOptions: {
+        //     // 确保外部化处理那些你不想打包进库的依赖
+        //    external,
 
-        }
+        // }
  
     }})
    
