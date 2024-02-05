@@ -8,17 +8,33 @@ const defaultObts = {
 
 export default (opts = {}) => {
     const getConfig = () => Object.assign(defaultObts, opts)
+    let  config=null
 
     return {
         name: 'vite:LocalScopeModules',
         config(){
               return  getConfig()
         },
+          configResolved(resolvedConfig) {
+             config=resolvedConfig
+          },
         resolveId(id, importer) {
 
-               const config=getConfig()
+               const _config=getConfig()
 
-            return getValidResolveId(id,config)
+               if(config.command==='serve'){
+                     console.warn("Don't use command==='serve' in  production.  Use other server  like  koa.js")
+                
+                  return `${config.root}${ret}`
+               
+            }
+            let ret=getValidResolveId(id,_config)
+              //surpport for Vue Component
+              if(ret&&/\.vue$/.test(importer)){
+                return ret.slice(1)
+              }
+
+            return ret
         }
 
     }
